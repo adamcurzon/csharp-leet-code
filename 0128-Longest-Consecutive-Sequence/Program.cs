@@ -2,18 +2,20 @@
 {
     public int LongestConsecutive(int[] nums)
     {
-        List<int> visited = new();
+        HashSet<int> numsSet = new HashSet<int>(nums);
+        HashSet<int> visited = new();
         int longest = 0;
         bool escape = false;
         int addPointer = 0;
         int subPointer = 0;
 
-        for (int i = 0; i < nums.Length; i++)
+        foreach (int num in numsSet)
         {
-            if (visited.Contains(i))
+            if (visited.Contains(num))
             {
                 continue;
             }
+
             visited.Add(nums[i]);
 
             subPointer = 0;
