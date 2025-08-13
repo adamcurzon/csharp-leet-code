@@ -1,0 +1,68 @@
+﻿public class Solution
+{
+    public int LongestConsecutive(int[] nums)
+    {
+        List<int> visited = new();
+        int longest = 0;
+        bool escape = false;
+        int addPointer = 0;
+        int subPointer = 0;
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (visited.Contains(i))
+            {
+                continue;
+            }
+            visited.Add(nums[i]);
+
+            subPointer = 0;
+            addPointer = 0;
+            escape = false;
+
+            // Addition
+            while (!escape)
+            {
+                if (nums.Contains(nums[i] + addPointer + 1))
+                {
+                    visited.Add(nums[i] + addPointer + 1);
+                    addPointer++;
+                }
+                else
+                {
+                    escape = true;
+                }
+            }
+
+            escape = false;
+
+            // Subtraction
+            while (!escape)
+            {
+                if (nums.Contains(nums[i] - subPointer - 1))
+                {
+                    visited.Add(nums[i] - subPointer - 1);
+                    subPointer++;
+                }
+                else
+                {
+                    escape = true;
+                }
+            }
+            if (subPointer + addPointer + 1 > longest)
+            {
+                longest = subPointer + addPointer + 1;
+            }
+        }
+
+        return longest;
+    }
+
+    static void Main()
+    {
+        Solution s = new();
+        Console.WriteLine(s.LongestConsecutive([100, 4, 200, 1, 3, 2]));
+        Console.WriteLine(s.LongestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1]));
+        Console.WriteLine(s.LongestConsecutive([1, 0, 1, 2]));
+    }
+}
