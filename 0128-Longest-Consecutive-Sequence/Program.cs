@@ -16,7 +16,7 @@
                 continue;
             }
 
-            visited.Add(nums[i]);
+            visited.Add(num);
 
             subPointer = 0;
             addPointer = 0;
@@ -25,9 +25,9 @@
             // Addition
             while (!escape)
             {
-                if (nums.Contains(nums[i] + addPointer + 1))
+                if (nums.Contains(num + addPointer + 1))
                 {
-                    visited.Add(nums[i] + addPointer + 1);
+                    visited.Add(num + addPointer + 1);
                     addPointer++;
                 }
                 else
@@ -41,9 +41,9 @@
             // Subtraction
             while (!escape)
             {
-                if (nums.Contains(nums[i] - subPointer - 1))
+                if (nums.Contains(num - subPointer - 1))
                 {
-                    visited.Add(nums[i] - subPointer - 1);
+                    visited.Add(num - subPointer - 1);
                     subPointer++;
                 }
                 else
